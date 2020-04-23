@@ -12,7 +12,7 @@ async function add(dog) {
 }
 
 function destroy(id) {
-  return null;
+  return db("dogs").where({ id }).del();
 }
 
 function getAll() {
@@ -20,5 +20,5 @@ function getAll() {
 }
 
 function getById(id) {
-  return null;
+  return db("dogs").where({ id }).first();
 }
