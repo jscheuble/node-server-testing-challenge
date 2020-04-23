@@ -20,4 +20,14 @@ server.get("/dogs", (req, res) => {
     });
 });
 
+server.post("/dogs", (req, res) => {
+  Dogs.add(req.body)
+    .then((id) => {
+      res.status(201).json({ message: `new dog added with id ${id[0]}` });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
+});
+
 module.exports = server;
