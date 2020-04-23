@@ -46,4 +46,22 @@ describe("server.js", () => {
       expect(res.body.message).toBe("new dog added with id 1");
     });
   });
+
+  describe("DELETE /dogs", () => {
+    it("should return a status of 200 OK", async () => {
+      await request(server).post("/dogs").send({
+        breed: "husky",
+      });
+      let res = await request(server).delete("/dogs/1");
+      expect(res.status).toBe(200);
+    });
+
+    it("should return a success message", async () => {
+      await request(server).post("/dogs").send({
+        breed: "husky",
+      });
+      let res = await request(server).delete("/dogs/1");
+      expect(res.body.message).toBe("success");
+    });
+  });
 });

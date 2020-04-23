@@ -30,4 +30,14 @@ server.post("/dogs", (req, res) => {
     });
 });
 
+server.delete("/dogs/:id", (req, res) => {
+  Dogs.destroy(req.params.id)
+    .then(() => {
+      res.status(200).json({ message: "success" });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err });
+    });
+});
+
 module.exports = server;
